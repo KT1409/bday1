@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>For Siddhartha</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+background:#080305;
+color:white;
+overflow-x:hidden;
+font-family:'Sora',sans-serif;
+}
+
+.font-serif{
+font-family:'Playfair Display',serif;
+}
+
+.text-gradient{
+background:linear-gradient(135deg,#ffb78f,#f472b6,#c084fc);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.glass{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.glow{
+box-shadow:
+0 0 60px rgba(255,120,80,0.12),
+0 0 120px rgba(255,80,120,0.08);
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+background:
+radial-gradient(circle at bottom, rgba(255,120,80,0.15), transparent 40%),
+radial-gradient(circle at top left, rgba(255,80,120,0.08), transparent 35%),
+#080305;
+}
+
+.section{
+padding:100px 20px;
+}
+
+.carousel-track{
+display:flex;
+gap:24px;
+overflow-x:auto;
+scroll-snap-type:x mandatory;
+padding:20px;
+scrollbar-width:none;
+}
+
+.carousel-track::-webkit-scrollbar{
+display:none;
+}
+
+.carousel-card{
+min-width:320px;
+height:420px;
+border-radius:32px;
+padding:28px;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+scroll-snap-align:center;
+flex-shrink:0;
+position:relative;
+overflow:hidden;
+transition:0.4s ease;
+background-size:cover !important;
+background-position:center !important;
+}
+
+.carousel-card:hover{
+transform:scale(1.03);
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to top,
+rgba(0,0,0,0.82),
+rgba(0,0,0,0.15));
+}
+
+.fade{
+opacity:0;
+transform:translateY(30px);
+transition:all .8s ease;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.player-bar{
+height:4px;
+background:rgba(255,255,255,0.08);
+border-radius:999px;
+overflow:hidden;
+}
+
+.player-progress{
+height:100%;
+width:35%;
+background:linear-gradient(90deg,#fb923c,#ec4899);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO -->
+<audio id="carousel-audio"></audio>
+
+<!-- HERO -->
+<section class="hero px-6">
+
+<div class="max-w-3xl relative z-10">
+
+<p class="uppercase tracking-[0.4em] text-xs text-rose-300/60 mb-6">
+bringing you birthday love a little early
+</p>
+
+<h1 class="font-serif text-gradient text-5xl md:text-7xl italic leading-tight mb-10">
+For the songs you'll hear this year.
+</h1>
+
+<button
+onclick="document.getElementById('memories').scrollIntoView({behavior:'smooth'})"
+class="glass px-8 py-3 rounded-full text-sm tracking-widest hover:bg-white/10 transition">
+
+begin
+
+</button>
+
+</div>
+
+</section>
+
+<!-- MEMORIES -->
+<section id="memories" class="section">
+
+<div class="max-w-7xl mx-auto">
+
+<h2 class="font-serif text-4xl md:text-5xl text-center text-rose-100 mb-3 fade">
+memories we carry
+</h2>
+
+<p class="text-center text-rose-300/40 text-sm mb-12 fade">
+swipe through the soundtrack →
+</p>
+
+<div class="carousel-track">
+
+<!-- CARD 1 -->
+<a href="https://music.youtube.com/playlist?list=PLp1NWZxzStlu6Ym13k5TGeF6ixfAek2X6" target="_blank">
+<div class="carousel-card glass glow"
+style="
+background:
+url('images/sunset.jpg');
+">
+
+<div class="overlay"></div>
+
+<div class="relative z-10">
+
+<p class="font-serif text-3xl italic mb-3">
+Songs which brought us together
+</p>
+
+<p class="text-rose-100/70 text-sm">
+Where feelings started growing
+</p>
+
+</div>
+</div>
+</a>
+
+<!-- CARD 2 --> 
+<a href="https://music.youtube.com/playlist?list=PLp1NWZxzStlu3a6Hp48kNdRyiMrfgMSpg" target="_blank">
+<div class="carousel-card glass glow"
+style="
+background:
+url('images/nightdrive.jpg');
+">
+
+<div class="overlay"></div>
+
+<div class="relative z-10">
+
+<p class="font-serif text-3xl italic mb-3">
+I find you in the music again and again
+</p>
+
+<p class="text-rose-100/70 text-sm">
+Always you in my playlists
+</p>
+
+</div>
+</div>
+</a>
+
+<!-- CARD 3 -->
+<a href="https://music.youtube.com/playlist?list=PLp1NWZxzStlu9TvLIq8EYz76j6na9pRp2" target="_blank">
+<div class="carousel-card glass glow"
+style="
+background:
+url('images/kick.jpg');
+">
+
+<div class="overlay"></div>
+
+<div class="relative z-10">
+
+<p class="font-serif text-3xl italic mb-3">
+Sleepy Nights
+</p>
+
+<p class="text-rose-100/70 text-sm">
+Late night lullabies
+</p>
+
+</div>
+</div>
+</a>
+
+<!-- CARD 4 -->
+<a href="https://music.youtube.com/playlist?list=PLp1NWZxzStlvtI7ven2-qKrAniH4WyXvS" target="_blank">
+<div class="carousel-card glass glow"
+style="
+background:
+url('images/rain.jpg');
+">
+
+<div class="overlay"></div>
+
+<div class="relative z-10">
+
+<p class="font-serif text-3xl italic mb-3">
+Soft english hours
+</p>
+
+<p class="text-rose-100/70 text-sm">
+Feelings that sound better in English
+</p>
+
+</div>
+</div>
+</a>
+
+<!-- CARD 5 -->
+<a href="https://music.youtube.com/playlist?list=PLp1NWZxzStlueSjSNlJI1j3f6xdHDwKf2" target="_blank">
+<div class="carousel-card glass glow"
+style="
+background:
+url('images/stars.jpg');
+">
+
+<div class="overlay"></div>
+
+<div class="relative z-10">
+
+<p class="font-serif text-3xl italic mb-3">
+Main Character Energy
+</p>
+
+<p class="text-rose-100/70 text-sm">
+For when life feels like a film
+</p>
+
+</div>
+</div>
+</a>
+
+<!-- CARD 6 -->
+<a href="https://music.youtube.com/playlist?list=PLp1NWZxzStluOwUXFer8Tm5mPVQBybZHa" target="_blank">
+<div class="carousel-card glass glow"
+style="
+background:
+url('images/future.jpg');
+">
+
+<div class="overlay"></div>
+
+<div class="relative z-10">
+
+<p class="font-serif text-3xl italic mb-3">
+00s Nostalgia
+</p>
+
+<p class="text-rose-100/70 text-sm">
+The early life soundtrack
+</p>
+
+</div>
+</div>
+</a>
+
+</div>
+</div>
+</section>
+
+<!-- EARPHONES -->
+<section class="section flex items-center justify-center px-6"
+style="
+background:
+radial-gradient(circle at center,
+rgba(255,120,80,0.08) 0%,
+#080305 70%);
+min-height:100vh;
+">
+
+<div class="max-w-3xl mx-auto text-center">
+
+<p class="uppercase tracking-[0.45em] text-xs text-rose-300/40 mb-6 fade">
+one more thing
+</p>
+
+<h2 class="font-serif text-gradient text-5xl md:text-7xl italic leading-tight mb-10 fade">
+
+some songs deserve
+<br>
+better listening.
+
+</h2>
+
+<div class="my-14 fade">
+
+<div class="
+w-56 h-56 mx-auto
+rounded-[40px]
+glass glow
+flex items-center justify-center">
+
+<i data-lucide="headphones"
+class="text-rose-200/70"
+style="width:80px;height:80px"></i>
+
+</div>
+
+</div>
+
+<p class="
+text-rose-100/75
+text-lg
+leading-relaxed
+max-w-xl
+mx-auto
+mb-10
+fade">
+
+for late-night songs,
+comfort playlists,
+long thoughts,
+and all the soundtracks waiting for you this year.
+
+</p>
+
+<button
+onclick="document.getElementById('playlist').scrollIntoView({behavior:'smooth'})"
+class="
+glass
+px-8 py-4
+rounded-full
+text-sm
+tracking-[0.2em]
+uppercase
+text-rose-100/80
+hover:bg-white/10
+transition-all duration-500">
+
+🎧 plug in your earphones
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FINAL CURATED PLAYLIST -->
+<!-- ========================= -->
+
+<section id="playlist" class="section">
+
+<div class="max-w-2xl mx-auto">
+
+<div class="glass rounded-[36px] p-8 glow">
+
+<!-- heading -->
+<div class="mb-10 text-center">
+
+<p class="uppercase tracking-[0.35em] text-xs text-rose-300/40 mb-3">
+curated collection
+</p>
+
+<h2 class="font-serif text-5xl italic text-gradient mb-4">
+for siddhartha
+</h2>
+
+<p class="text-sm text-rose-300/40 leading-relaxed">
+a few songs that belonged here.
+</p>
+
+</div>
+
+<!-- CLICKABLE SONG BUTTONS -->
+<div class="flex flex-wrap gap-3 justify-center mb-12">
+
+<!-- button 1 -->
+<a
+href="https://open.spotify.com/search/husn"
+target="_blank"
+class="
+glass
+px-5 py-3
+rounded-full
+text-sm
+text-rose-100/80
+hover:bg-white/10
+transition-all duration-300
+hover:scale-105">
+
+🎵 Husn
+
+</a>
+
+<!-- button 2 -->
+<a
+href="https://open.spotify.com/search/shaam"
+target="_blank"
+class="
+glass
+px-5 py-3
+rounded-full
+text-sm
+text-rose-100/80
+hover:bg-white/10
+transition-all duration-300
+hover:scale-105">
+
+🎵 Shaam
+
+</a>
+
+<!-- button 3 -->
+<a
+href="https://open.spotify.com/search/the%20night%20we%20met"
+target="_blank"
+class="
+glass
+px-5 py-3
+rounded-full
+text-sm
+text-rose-100/80
+hover:bg-white/10
+transition-all duration-300
+hover:scale-105">
+
+🎵 The Night We Met
+
+</a>
+
+<!-- button 4 -->
+<a
+href="https://open.spotify.com/search/iktara"
+target="_blank"
+class="
+glass
+px-5 py-3
+rounded-full
+text-sm
+text-rose-100/80
+hover:bg-white/10
+transition-all duration-300
+hover:scale-105">
+
+🎵 Iktara
+
+</a>
+
+<!-- button 5 -->
+<a
+href="https://open.spotify.com/search/apocalypse"
+target="_blank"
+class="
+glass
+px-5 py-3
+rounded-full
+text-sm
+text-rose-100/80
+hover:bg-white/10
+transition-all duration-300
+hover:scale-105">
+
+🎵 Apocalypse
+
+</a>
+
+</div>
+
+<!-- BGM SECTION -->
+<div class="text-center">
+
+<p class="text-xs uppercase tracking-[0.35em] text-rose-300/40 mb-5">
+one last thing
+</p>
+
+<button
+onclick="toggleBGM()"
+id="bgmButton"
+class="
+glass
+px-8 py-4
+rounded-full
+text-sm
+tracking-[0.2em]
+uppercase
+text-rose-100/80
+hover:bg-white/10
+transition-all duration-500
+hover:scale-105">
+
+▶ With Love
+
+</button>
+
+<p class="text-xs text-rose-300/30 mt-5 italic">
+best experienced with your new earphones.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- BACKGROUND MUSIC -->
+<!-- ========================= -->
+
+<audio id="bgm" loop>
+
+<source src="songs/bgm.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+<!-- ========================= -->
+<!-- BACKGROUND MUSIC -->
+<!-- ========================= -->
+
+<audio id="bgm" loop>
+
+<source src="songs/bgm.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+<!-- FINAL -->
+<section class="section text-center">
+
+<h2 class="font-serif text-gradient text-6xl md:text-7xl italic mb-6">
+Happy Birthday My Love.
+</h2>
+
+<p class="text-rose-300/40 tracking-wider text-sm">
+Here’s to another year of sunsets, soundtracks, and you.
+</p>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- SCRIPTS -->
+<!-- ========================= -->
+
+<script>
+
+lucide.createIcons();
+
+
+
+// fade animation
+const fades = document.querySelectorAll('.fade');
+
+const fadeObserver = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+
+entry.target.classList.add('show');
+
+}
+
+});
+
+});
+
+fades.forEach(el => fadeObserver.observe(el));
+
+
+
+// carousel audio
+const cards = document.querySelectorAll('.carousel-card');
+
+const audio = document.getElementById('carousel-audio');
+
+const songs = [
+
+"songs/kho-gaye.mp3",
+"songs/shaam.mp3",
+"songs/dil-chahta-hai.mp3",
+"songs/husn.mp3",
+"songs/kun-faya-kun.mp3",
+"songs/iktara.mp3"
+
+];
+
+let current = -1;
+
+const cardObserver = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+
+const index = [...cards].indexOf(entry.target);
+
+if(index !== current){
+
+current = index;
+
+audio.pause();
+
+audio.src = songs[index];
+
+audio.volume = 0.35;
+
+audio.play().catch(() => {});
+
+}
+
+}
+
+});
+
+},{
+threshold:0.7
+});
+
+cards.forEach(card => {
+
+cardObserver.observe(card);
+
+});
+
+
+
+// =========================
+// BGM BUTTON
+// =========================
+
+const bgm = document.getElementById("bgm");
+
+const bgmButton = document.getElementById("bgmButton");
+
+let isPlaying = false;
+
+function toggleBGM(){
+
+if(isPlaying === false){
+
+bgm.volume = 0.35;
+
+bgm.play();
+
+bgmButton.textContent = "❚❚ pause";
+
+isPlaying = true;
+
+}else{
+
+bgm.pause();
+
+bgmButton.textContent = "▶ With Love";
+
+isPlaying = false;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
