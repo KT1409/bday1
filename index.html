@@ -569,11 +569,6 @@ best experienced with your new earphones.
 <!-- BACKGROUND MUSIC -->
 <!-- ========================= -->
 
-<audio id="bgm" loop>
-
-<source src="songs/bgm.mp3" type="audio/mpeg">
-
-</audio>
 
 
 
@@ -708,40 +703,6 @@ cardObserver.observe(card);
 });
 
 
-
-// =========================
-// BGM BUTTON
-// =========================
-
-const bgm = document.getElementById("bgm");
-
-const bgmButton = document.getElementById("bgmButton");
-
-let isPlaying = false;
-
-function toggleBGM(){
-
-if(isPlaying === false){
-
-bgm.volume = 0.35;
-
-bgm.play();
-
-bgmButton.textContent = "❚❚ pause";
-
-isPlaying = true;
-
-}else{
-
-bgm.pause();
-
-bgmButton.textContent = "▶ With Love";
-
-isPlaying = false;
-
-}
-
-}
 
 </script>
 
