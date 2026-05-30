@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
 html{
 scroll-behavior:smooth;
 }
@@ -128,6 +129,7 @@ height:100%;
 width:35%;
 background:linear-gradient(90deg,#fb923c,#ec4899);
 }
+
 </style>
 </head>
 
@@ -539,7 +541,7 @@ transition-all
 duration-500
 hover:scale-105
 inline-block"
-aria-label="Open With Love on YouTube Music">
+aria-label="Play With Love background music">
 
 ▶ With Love
 
@@ -572,15 +574,8 @@ Here’s to another year of sunsets, soundtracks, and you.
 
 <!-- SCRIPTS -->
 <script>
+
 lucide.createIcons();
-
-const withLoveButton = document.getElementById('with-love-button');
-
-if(withLoveButton){
-withLoveButton.addEventListener('click', () => {
-window.open('https://music.youtube.com/watch?v=hDNkW-n9siA', '_blank', 'noopener,noreferrer');
-});
-}
 
 // fade animation
 const fades = document.querySelectorAll('.fade');
@@ -598,6 +593,7 @@ fades.forEach(el => fadeObserver.observe(el));
 // carousel audio
 const cards = document.querySelectorAll('.carousel-card');
 const audio = document.getElementById('carousel-audio');
+const withLoveButton = document.getElementById('with-love-button');
 
 const songs = [
 "songs/kho-gaye.mp3",
@@ -609,8 +605,27 @@ const songs = [
 ];
 
 let current = -1;
+let withLovePlaying = false;
+
+if(withLoveButton){
+withLoveButton.addEventListener('click', async () => {
+withLovePlaying = true;
+current = -1;
+audio.pause();
+audio.src = "songs/bgm.mp3";
+audio.volume = 0.5;
+
+try{
+await audio.play();
+}catch(error){
+console.log("Playback failed:", error);
+}
+});
+}
 
 const cardObserver = new IntersectionObserver(entries => {
+if(withLovePlaying) return;
+
 entries.forEach(entry => {
 if(entry.isIntersecting){
 const index = [...cards].indexOf(entry.target);
@@ -631,6 +646,7 @@ threshold:0.7
 cards.forEach(card => {
 cardObserver.observe(card);
 });
+
 </script>
 
 </body>
