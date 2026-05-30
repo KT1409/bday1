@@ -403,7 +403,10 @@ transition-all duration-500">
 
 </section>
 
+<!-- ========================= -->
 <!-- FINAL CURATED PLAYLIST -->
+<!-- ========================= -->
+
 <section id="playlist" class="section">
 
 <div class="max-w-2xl mx-auto">
@@ -430,6 +433,7 @@ a few songs that belonged here.
 <!-- CLICKABLE SONG BUTTONS -->
 <div class="flex flex-wrap gap-3 justify-center mb-12">
 
+<!-- button 1 -->
 <a
 href="https://music.youtube.com/watch?v=-GyOKmoLbng"
 target="_blank"
@@ -447,6 +451,7 @@ hover:scale-105">
 
 </a>
 
+<!-- button 2 -->
 <a
 href="https://music.youtube.com/watch?v=sng0VbBxlJk&si=YDfqosMP1SBdQsDx"
 target="_blank"
@@ -464,6 +469,7 @@ hover:scale-105">
 
 </a>
 
+<!-- button 3 -->
 <a
 href="https://music.youtube.com/watch?v=UtYI1SheoUA&si=7oFEYxr3nJsn3Ex5"
 target="_blank"
@@ -481,6 +487,7 @@ hover:scale-105">
 
 </a>
 
+<!-- button 4 -->
 <a
 href="https://music.youtube.com/watch?v=eqlt6CJ_Et4"
 target="_blank"
@@ -498,6 +505,7 @@ hover:scale-105">
 
 </a>
 
+<!-- button 5 -->
 <a
 href="https://music.youtube.com/watch?v=amWKXh9_EQE&si=GxiWZd4dtTn41JIo"
 target="_blank"
@@ -517,7 +525,7 @@ hover:scale-105">
 
 </div>
 
-<!-- WITH LOVE BUTTON -->
+<!-- BGM SECTION -->
 <div class="text-center">
 
 <p class="text-xs uppercase tracking-[0.35em] text-rose-300/40 mb-5">
@@ -525,23 +533,19 @@ one last thing
 </p>
 
 <button
-id="with-love-button"
-type="button"
+onclick="toggleBGM()"
+id="bgmButton"
 class="
 glass
-px-8
-py-4
+px-8 py-4
 rounded-full
 text-sm
 tracking-[0.2em]
 uppercase
 text-rose-100/80
 hover:bg-white/10
-transition-all
-duration-500
-hover:scale-105
-inline-block"
-aria-label="Play With Love background music">
+transition-all duration-500
+hover:scale-105">
 
 ▶ With Love
 
@@ -559,6 +563,50 @@ best experienced with your new earphones.
 
 </section>
 
+
+
+<!-- ========================= -->
+<!-- BACKGROUND MUSIC -->
+<!-- ========================= -->
+
+<audio id="bgm" loop>
+
+<source src="songs/bgm.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+<!-- ========================= -->
+<!-- BACKGROUND MUSIC -->
+<!-- ========================= -->
+
+<audio id="bgm" loop>
+
+<a
+href="https://music.youtube.com/watch?v=hDNkW-n9siA"
+target="_blank"
+class="
+glass
+px-8 py-4
+rounded-full
+text-sm
+tracking-[0.2em]
+uppercase
+text-rose-100/80
+hover:bg-white/10
+transition-all duration-500
+hover:scale-105
+inline-block">
+
+▶ With Love
+
+</a>
+
+</audio>
+
+
+
 <!-- FINAL -->
 <section class="section text-center">
 
@@ -572,80 +620,128 @@ Here’s to another year of sunsets, soundtracks, and you.
 
 </section>
 
+
+
+<!-- ========================= -->
 <!-- SCRIPTS -->
+<!-- ========================= -->
+
 <script>
 
 lucide.createIcons();
+
+
 
 // fade animation
 const fades = document.querySelectorAll('.fade');
 
 const fadeObserver = new IntersectionObserver(entries => {
+
 entries.forEach(entry => {
+
 if(entry.isIntersecting){
+
 entry.target.classList.add('show');
+
 }
+
 });
+
 });
 
 fades.forEach(el => fadeObserver.observe(el));
 
+
+
 // carousel audio
 const cards = document.querySelectorAll('.carousel-card');
+
 const audio = document.getElementById('carousel-audio');
-const withLoveButton = document.getElementById('with-love-button');
 
 const songs = [
+
 "songs/kho-gaye.mp3",
 "songs/shaam.mp3",
 "songs/dil-chahta-hai.mp3",
 "songs/husn.mp3",
 "songs/kun-faya-kun.mp3",
 "songs/iktara.mp3"
+
 ];
 
 let current = -1;
-let withLovePlaying = false;
-
-if(withLoveButton){
-withLoveButton.addEventListener('click', async () => {
-withLovePlaying = true;
-current = -1;
-audio.pause();
-audio.src = "songs/bgm.mp3";
-audio.volume = 0.5;
-
-try{
-await audio.play();
-}catch(error){
-console.log("Playback failed:", error);
-}
-});
-}
 
 const cardObserver = new IntersectionObserver(entries => {
-if(withLovePlaying) return;
 
 entries.forEach(entry => {
+
 if(entry.isIntersecting){
+
 const index = [...cards].indexOf(entry.target);
 
 if(index !== current){
+
 current = index;
+
 audio.pause();
+
 audio.src = songs[index];
+
 audio.volume = 0.35;
+
 audio.play().catch(() => {});
+
 }
+
 }
+
 });
+
 },{
 threshold:0.7
 });
 
 cards.forEach(card => {
+
 cardObserver.observe(card);
+
 });
+
+
+
+// =========================
+// BGM BUTTON
+// =========================
+
+const bgm = document.getElementById("bgm");
+
+const bgmButton = document.getElementById("bgmButton");
+
+let isPlaying = false;
+
+function toggleBGM(){
+
+if(isPlaying === false){
+
+bgm.volume = 0.35;
+
+bgm.play();
+
+bgmButton.textContent = "❚❚ pause";
+
+isPlaying = true;
+
+}else{
+
+bgm.pause();
+
+bgmButton.textContent = "▶ With Love";
+
+isPlaying = false;
+
+}
+
+}
 
 </script>
 
