@@ -12,7 +12,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
 html{
 scroll-behavior:smooth;
 }
@@ -129,7 +128,6 @@ height:100%;
 width:35%;
 background:linear-gradient(90deg,#fb923c,#ec4899);
 }
-
 </style>
 </head>
 
@@ -403,10 +401,7 @@ transition-all duration-500">
 
 </section>
 
-<!-- ========================= -->
 <!-- FINAL CURATED PLAYLIST -->
-<!-- ========================= -->
-
 <section id="playlist" class="section">
 
 <div class="max-w-2xl mx-auto">
@@ -433,7 +428,6 @@ a few songs that belonged here.
 <!-- CLICKABLE SONG BUTTONS -->
 <div class="flex flex-wrap gap-3 justify-center mb-12">
 
-<!-- button 1 -->
 <a
 href="https://music.youtube.com/watch?v=-GyOKmoLbng"
 target="_blank"
@@ -451,7 +445,6 @@ hover:scale-105">
 
 </a>
 
-<!-- button 2 -->
 <a
 href="https://music.youtube.com/watch?v=sng0VbBxlJk&si=YDfqosMP1SBdQsDx"
 target="_blank"
@@ -469,7 +462,6 @@ hover:scale-105">
 
 </a>
 
-<!-- button 3 -->
 <a
 href="https://music.youtube.com/watch?v=UtYI1SheoUA&si=7oFEYxr3nJsn3Ex5"
 target="_blank"
@@ -487,7 +479,6 @@ hover:scale-105">
 
 </a>
 
-<!-- button 4 -->
 <a
 href="https://music.youtube.com/watch?v=eqlt6CJ_Et4"
 target="_blank"
@@ -505,7 +496,6 @@ hover:scale-105">
 
 </a>
 
-<!-- button 5 -->
 <a
 href="https://music.youtube.com/watch?v=amWKXh9_EQE&si=GxiWZd4dtTn41JIo"
 target="_blank"
@@ -525,16 +515,16 @@ hover:scale-105">
 
 </div>
 
-<!-- BGM SECTION -->
+<!-- WITH LOVE BUTTON -->
 <div class="text-center">
 
 <p class="text-xs uppercase tracking-[0.35em] text-rose-300/40 mb-5">
 one last thing
 </p>
 
-<a
-href="https://music.youtube.com/watch?v=hDNkW-n9siA"
-target="_blank"
+<button
+id="with-love-button"
+type="button"
 class="
 glass
 px-8
@@ -548,11 +538,12 @@ hover:bg-white/10
 transition-all
 duration-500
 hover:scale-105
-inline-block">
+inline-block"
+aria-label="Open With Love on YouTube Music">
 
 ▶ With Love
 
-</a>
+</button>
 
 <p class="text-xs text-rose-300/30 mt-5 italic">
 best experienced with your new earphones.
@@ -565,51 +556,6 @@ best experienced with your new earphones.
 </div>
 
 </section>
-
-
-
-<!-- ========================= -->
-<!-- BACKGROUND MUSIC -->
-<!-- ========================= -->
-
-
-
-
-<!-- ========================= -->
-<!-- BACKGROUND MUSIC -->
-<div class="text-center">
-
-<p class="text-xs uppercase tracking-[0.35em] text-rose-300/40 mb-5">
-one last thing
-</p>
-
-<a
-href="https://music.youtube.com/watch?v=hDNkW-n9siA"
-target="_blank"
-class="
-glass
-px-8 py-4
-rounded-full
-text-sm
-tracking-[0.2em]
-uppercase
-text-rose-100/80
-hover:bg-white/10
-transition-all duration-500
-hover:scale-105
-inline-block">
-
-▶ With Love
-
-</a>
-
-<p class="text-xs text-rose-300/30 mt-5 italic">
-best experienced with your new earphones.
-</p>
-
-</div>
-
-
 
 <!-- FINAL -->
 <section class="section text-center">
@@ -624,95 +570,67 @@ Here’s to another year of sunsets, soundtracks, and you.
 
 </section>
 
-
-
-<!-- ========================= -->
 <!-- SCRIPTS -->
-<!-- ========================= -->
-
 <script>
-
 lucide.createIcons();
 
+const withLoveButton = document.getElementById('with-love-button');
 
+if(withLoveButton){
+withLoveButton.addEventListener('click', () => {
+window.open('https://music.youtube.com/watch?v=hDNkW-n9siA', '_blank', 'noopener,noreferrer');
+});
+}
 
 // fade animation
 const fades = document.querySelectorAll('.fade');
 
 const fadeObserver = new IntersectionObserver(entries => {
-
 entries.forEach(entry => {
-
 if(entry.isIntersecting){
-
 entry.target.classList.add('show');
-
 }
-
 });
-
 });
 
 fades.forEach(el => fadeObserver.observe(el));
 
-
-
 // carousel audio
 const cards = document.querySelectorAll('.carousel-card');
-
 const audio = document.getElementById('carousel-audio');
 
 const songs = [
-
 "songs/kho-gaye.mp3",
 "songs/shaam.mp3",
 "songs/dil-chahta-hai.mp3",
 "songs/husn.mp3",
 "songs/kun-faya-kun.mp3",
 "songs/iktara.mp3"
-
 ];
 
 let current = -1;
 
 const cardObserver = new IntersectionObserver(entries => {
-
 entries.forEach(entry => {
-
 if(entry.isIntersecting){
-
 const index = [...cards].indexOf(entry.target);
 
 if(index !== current){
-
 current = index;
-
 audio.pause();
-
 audio.src = songs[index];
-
 audio.volume = 0.35;
-
 audio.play().catch(() => {});
-
 }
-
 }
-
 });
-
 },{
 threshold:0.7
 });
 
 cards.forEach(card => {
-
 cardObserver.observe(card);
-
 });
-
-
-
 </script>
 
 </body>
